@@ -5,7 +5,9 @@
  */
 package gls.Inventario;
 
+import gls.Inventario.DTO.Articulo;
 import gls.Inventario.DTO.Bodega;
+import gls.Inventario.DTO.Grupo;
 import java.util.ArrayList;
 
 /**
@@ -17,5 +19,9 @@ public interface Inventario {
     public ArrayList<Bodega> listBodegas();
     
     public int insertBodega(int id);
+
+    public ArrayList<Articulo> listArticulos();
+
+    public ArrayList<Grupo> listGrupos();
     
 }

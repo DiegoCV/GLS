@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author Fredy Arciniegas
  */
-public class Factory implements Inventario {
+public class IFactory implements Inventario {
 
     private static ArticuloDao articuloDao;
     private static BodegaDao bodegaDao;

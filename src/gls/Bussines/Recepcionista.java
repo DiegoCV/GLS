@@ -20,16 +20,16 @@ public class Recepcionista implements Bussines{
     @Override
     public Carguero prepararCompra() {
         Carguero c=new Carguero();
-        c.add("articulos", Vinculo.listArticulos());
-        c.add("grupos", Vinculo.listGrupos());
+        c.add("articulos", Vinculo.listArticulos());        
         c.add("bodegas", Vinculo.listBodegas());
+        c.add("grupos", Vinculo.listGrupos());
         c.add("proveedores", Vinculo.listProveedores());
         return c;
     }
 
     @Override
     public String efectuarCompra(ArrayList<Movimiento> movimientos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override

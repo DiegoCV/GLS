@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author Fredy Arciniegas
  */
-public class Factory implements Personas {
+public class PFactory implements Personas {
 
     
 }

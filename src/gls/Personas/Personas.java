@@ -5,6 +5,7 @@
  */
 package gls.Personas;
 
+import gls.Personas.DTO.Proveedor;
 import java.util.ArrayList;
 
 /**
@@ -12,6 +13,8 @@ import java.util.ArrayList;
  * @author Fredy Arciniegas
  */
 public interface Personas {
+
+    public ArrayList<Proveedor> listProveedores();
         
     
 }
