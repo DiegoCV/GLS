@@ -7,9 +7,11 @@ package gls.Bussines;
 
 import gls.Inventario.DTO.Articulo;
 import gls.Inventario.DTO.Bodega;
+import gls.Inventario.DTO.Factura;
 import gls.Inventario.DTO.Grupo;
 import gls.Inventario.IFactory;
 import gls.Inventario.Inventario;
+import gls.Personas.DTO.Cliente;
 import gls.Personas.DTO.Proveedor;
 import gls.Personas.Personas;
 import gls.Personas.PFactory;
@@ -30,7 +32,7 @@ public class Vinculo {
         Inventario i = new IFactory();
         return i.listBodegas();
     }
-    
+
     protected static ArrayList<Grupo> listGrupos() {
         Inventario i = new IFactory();
         return i.listGrupos();
@@ -40,6 +42,30 @@ public class Vinculo {
         Personas p = new PFactory();
         return p.listProveedores();
     }
-    
-    
+
+    protected static ArrayList<Cliente> listClientes() {
+        Personas p = new PFactory();
+        return p.listClientes();
+    }
+
+    static void insertCliente(Cliente cliente) {
+        Personas p = new PFactory();
+        p.insertCliente(cliente);
+    }
+
+    static void updateArticulo(Articulo articulo) {
+        Inventario i = new IFactory();
+        i.updateArticulo(articulo);
+    }
+
+    static int insertFactura(Factura factura) {
+        Inventario i = new IFactory();
+        return i.insertFactura(factura);
+    }
+
+    static void insertProveedor(Proveedor proveedor) {
+        Personas p = new PFactory();
+        p.insertProveedor(proveedor);
+    }    
+
 }

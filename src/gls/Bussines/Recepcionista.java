@@ -7,6 +7,7 @@ package gls.Bussines;
 
 import gls.Inventario.DTO.Articulo;
 import gls.Inventario.DTO.Bodega;
+import gls.Inventario.DTO.Factura;
 import gls.Inventario.DTO.Movimiento;
 import gls.Util.Carguero;
 import java.util.ArrayList;
@@ -15,12 +16,12 @@ import java.util.ArrayList;
  *
  * @author Fredy Arciniegas
  */
-public class Recepcionista implements Bussines{    
+public class Recepcionista implements Bussines {
 
     @Override
     public Carguero prepararCompra() {
-        Carguero c=new Carguero();
-        c.add("articulos", Vinculo.listArticulos());        
+        Carguero c = new Carguero();
+        c.add("articulos", Vinculo.listArticulos());
         c.add("bodegas", Vinculo.listBodegas());
         c.add("grupos", Vinculo.listGrupos());
         c.add("proveedores", Vinculo.listProveedores());
@@ -28,32 +29,47 @@ public class Recepcionista implements Bussines{
     }
 
     @Override
-    public String efectuarCompra(ArrayList<Movimiento> movimientos) {
-        
+    public void efectuarCompra(ArrayList<Movimiento> movimientos, double total) {
+        Factura factura = new Factura();
+        factura.setTotal(total);
+        factura.setId(Vinculo.insertFactura(factura));
+        for (Movimiento movimiento : movimientos) {
+            if (movimiento.isArticuloNuevo()) {
+                Vinculo.insertArticulo(movimiento.getArticulo());
+            } else {
+                Articulo articulo = movimiento.getArticulo();
+                articulo.setCantidad(articulo.getCantidad() + movimiento.getCantidad());
+                Vinculo.updateArticulo(articulo);
+            }
+            if (movimiento.isProveedorNuevo()) {
+                Vinculo.insertProveedor(movimiento.getProveedor());
+            }
+        }
     }
 
     @Override
     public Carguero prepararVenta() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         Carguero c = new Carguero();
+        c.add("articulos", Vinculo.listArticulos());
+        c.add("clientes", Vinculo.listClientes());
+        return c;
     }
 
     @Override
-    public String efectuarVenta(ArrayList<Movimiento> movimientos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void efectuarVenta(ArrayList<Movimiento> movimientos, double total) {
+        Factura factura = new Factura();
+        factura.setTotal(total);
+        factura.setId(Vinculo.insertFactura(factura));
+        for (Movimiento movimiento : movimientos) {
+
+            Articulo articulo = movimiento.getArticulo();
+            articulo.setCantidad(articulo.getCantidad() - movimiento.getCantidad());
+            Vinculo.updateArticulo(articulo);
+
+            if (movimiento.isClienteNuevo()) {
+                Vinculo.insertCliente(movimiento.getCliente());
+            }
+        }
     }
 
-<<<<<<< HEAD
-    @Override
-    public String efectuarCompra(ArrayList<gls.Inventario.DTO.Movimiento> movimientos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String efectuarVenta(ArrayList<gls.Inventario.DTO.Movimiento> movimientos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-   
-=======
->>>>>>> a746853c35c37af60f8d359e6dc801c7cfb2f96c
-    
 }

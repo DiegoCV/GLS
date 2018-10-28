@@ -21,9 +21,9 @@ import java.util.ArrayList;
 public interface Bussines {       
     
     public Carguero prepararCompra(); //listo articulos, grupos, bodegas y proveedores
-    public String efectuarCompra(ArrayList<Movimiento> movimientos);
+    public void efectuarCompra(ArrayList<Movimiento> movimientos,double total);
     
     public Carguero prepararVenta(); //listo articulos y clientes
-    public String efectuarVenta(ArrayList<Movimiento> movimientos);
+    public void efectuarVenta(ArrayList<Movimiento> movimientos,double total);
     
 }

@@ -7,6 +7,7 @@ package gls.Inventario;
 
 import gls.Inventario.DTO.Articulo;
 import gls.Inventario.DTO.Bodega;
+import gls.Inventario.DTO.Factura;
 import gls.Inventario.DTO.Grupo;
 import java.util.ArrayList;
 
@@ -23,5 +24,9 @@ public interface Inventario {
     public ArrayList<Articulo> listArticulos();
 
     public ArrayList<Grupo> listGrupos();
+
+    public int insertFactura(Factura factura);
+
+    public void updateArticulo(Articulo articulo);
     
 }

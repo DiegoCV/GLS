@@ -24,6 +24,33 @@ public class Movimiento {
   private Usuario usuario;
   private Factura factura;
 
+  private boolean articuloNuevo;
+  private boolean proveedorNuevo;
+  private boolean clienteNuevo;
+
+    public boolean isArticuloNuevo() {
+        return articuloNuevo;
+    }
+
+    public void setArticuloNuevo(boolean articuloNuevo) {
+        this.articuloNuevo = articuloNuevo;
+    }
+
+    public boolean isProveedorNuevo() {
+        return proveedorNuevo;
+    }
+
+    public void setProveedorNuevo(boolean proveedorNuevo) {
+        this.proveedorNuevo = proveedorNuevo;
+    }
+
+    public boolean isClienteNuevo() {
+        return clienteNuevo;
+    }
+
+    public void setClienteNuevo(boolean clienteNuevo) {
+        this.clienteNuevo = clienteNuevo;
+    }
     /**
      * Devuelve el valor correspondiente a id
      * @return id

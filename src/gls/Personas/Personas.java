@@ -5,6 +5,7 @@
  */
 package gls.Personas;
 
+import gls.Personas.DTO.Cliente;
 import gls.Personas.DTO.Proveedor;
 import java.util.ArrayList;
 
@@ -15,6 +16,12 @@ import java.util.ArrayList;
 public interface Personas {
 
     public ArrayList<Proveedor> listProveedores();
+
+    public void insertCliente(Cliente cliente);
+
+    public void insertProveedor(Proveedor proveedor);
+
+    public ArrayList<Cliente> listClientes();
         
     
 }
