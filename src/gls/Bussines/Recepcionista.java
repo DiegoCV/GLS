@@ -40,6 +40,16 @@ public class Recepcionista implements Bussines{
     public String efectuarVenta(Cliente cliente, ArrayList<Articulo> articulos) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public String efectuarCompra(ArrayList<gls.Inventario.DTO.Movimiento> movimientos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String efectuarVenta(ArrayList<gls.Inventario.DTO.Movimiento> movimientos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
    
     
 }
