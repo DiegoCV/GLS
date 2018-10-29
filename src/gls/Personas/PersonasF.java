@@ -60,4 +60,9 @@ public class PersonasF implements Personas {
         return getClienteDao().listAll();
     }
 
+    @Override
+    public Usuario login(Usuario usuario) {
+        return getUsuarioDao().login(usuario);
+    }
+
 }

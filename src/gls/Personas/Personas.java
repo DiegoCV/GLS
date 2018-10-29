@@ -7,6 +7,7 @@ package gls.Personas;
 
 import gls.Personas.DTO.Cliente;
 import gls.Personas.DTO.Proveedor;
+import gls.Personas.DTO.Usuario;
 import java.util.ArrayList;
 
 /**
@@ -22,6 +23,8 @@ public interface Personas {
     public void insertProveedor(Proveedor proveedor);
 
     public ArrayList<Cliente> listClientes();
+
+    public Usuario login(Usuario usuario);
         
     
 }

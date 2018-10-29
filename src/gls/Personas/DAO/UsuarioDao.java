@@ -44,7 +44,7 @@ public class UsuarioDao {
     public int insert(Usuario usuario) throws NullPointerException {
         int last_inserted_id = -1;
         try {
-            PreparedStatement consulta = cn.prepareStatement(
+            PreparedStatement consulta = getConexion().prepareStatement(
                     "INSERT INTO `usuario`( `user`, `password`, `tipo`)"
                     + "VALUES (?,?,?)");
             consulta.setString(1, usuario.getUser());
@@ -73,7 +73,7 @@ public class UsuarioDao {
      */
     public Usuario select(Usuario usuario) throws NullPointerException {
         try {
-            PreparedStatement consulta = cn.prepareStatement(
+            PreparedStatement consulta = getConexion().prepareStatement(
                     "SELECT `user`, `password`, `tipo`"
                     + "FROM `usuario`"
                     + "WHERE `user`=?");
@@ -105,7 +105,7 @@ public class UsuarioDao {
      */
     public void update(Usuario usuario) throws NullPointerException {
         try {
-            PreparedStatement consulta = cn.prepareStatement(
+            PreparedStatement consulta = getConexion().prepareStatement(
                     "UPDATE `usuario` SET`user`=?, `password`=?, `tipo`=? WHERE `user`=? ");
             consulta.setString(1, usuario.getUser());
             consulta.setString(2, usuario.getPassword());
@@ -129,7 +129,7 @@ public class UsuarioDao {
      */
     public void delete(Usuario usuario) throws NullPointerException {
         try {
-            PreparedStatement consulta = cn.prepareStatement(
+            PreparedStatement consulta = getConexion().prepareStatement(
                     "DELETE FROM `usuario` WHERE `user`=?");
             consulta.setString(1, usuario.getUser());
 
@@ -152,7 +152,7 @@ public class UsuarioDao {
     public ArrayList<Usuario> listAll() throws NullPointerException {
         ArrayList<Usuario> lista = new ArrayList();
         try {
-            PreparedStatement consulta = cn.prepareStatement(
+            PreparedStatement consulta = getConexion().prepareStatement(
                     "SELECT `user`, `password`, `tipo`"
                     + "FROM `usuario`"
                     + "WHERE 1");
@@ -185,6 +185,32 @@ public class UsuarioDao {
             MyLogger.escribirLog(e);
             getConexion();
         }
+    }
+
+    public Usuario login(Usuario usuario) {
+        try {
+            PreparedStatement consulta = getConexion().prepareStatement(
+                    "SELECT `user`, `password`, `tipo`"
+                    + "FROM `usuario`"
+                    + "WHERE `user`=? and `password`=? ");
+            consulta.setString(1, usuario.getUser());
+            consulta.setString(2, usuario.getPassword());
+            
+            ResultSet res = consulta.executeQuery();
+            while (res.next()) {
+                usuario.setUser(res.getString("user"));
+                usuario.setPassword(res.getString("password"));
+                usuario.setTipo(res.getInt("tipo"));
+
+            }
+            res.close();
+            consulta.close();
+        } catch (SQLException e) {
+            MyLogger.escribirLog(e);
+            getConexion();
+            return null;
+        }
+        return usuario;
     }
 }
 //That´s all folks!

@@ -15,6 +15,7 @@ import gls.Inventario.InventarioF;
 import gls.Inventario.Inventario;
 import gls.Personas.DTO.Cliente;
 import gls.Personas.DTO.Proveedor;
+import gls.Personas.DTO.Usuario;
 import gls.Personas.Personas;
 import gls.Personas.PersonasF;
 import java.util.ArrayList;
@@ -105,4 +106,8 @@ public class Vinculo {
         i.updateLimbo(limbo);
     }
 
+    static Usuario login(Usuario usuario) {
+        Personas p = new PersonasF();
+        return p.login(usuario);
+    }
 }

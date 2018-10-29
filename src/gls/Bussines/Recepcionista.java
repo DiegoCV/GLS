@@ -10,6 +10,7 @@ import gls.Inventario.DTO.Bodega;
 import gls.Inventario.DTO.Factura;
 import gls.Inventario.DTO.Limbo;
 import gls.Inventario.DTO.Movimiento;
+import gls.Personas.DTO.Usuario;
 import gls.Util.Carguero;
 import java.util.ArrayList;
 
@@ -109,4 +110,8 @@ public class Recepcionista implements Bussines {
         }
     }
 
+    @Override
+    public Usuario login(Usuario usuario) {
+        return Vinculo.login(usuario);
+    }
 }
