@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package gls.control;
-import gls.Inventario.DTO.Cliente;
+import gls.Personas.DTO.Cliente;
 import gls.Inventario.DTO.Articulo;
 import javax.servlet.http.HttpServletRequest;
 /**
@@ -24,9 +24,13 @@ public class Filtro {
     }
     
     public Cliente filtrarCliente(){
-        return new Cliente(
-                request.getParameter("cedula")
-        );
+        Cliente cliente = new Cliente();
+        cliente.setCedula(request.getParameter("cedula"));
+        return cliente;
+//        return new Cliente(
+//                request.getParameter("cedula")
+//        );    
+// -------------------- Aquí_no_hacemos_eso.jpg XD ----------------------
     }
 //</editor-fold>
     

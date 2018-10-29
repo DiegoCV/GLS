@@ -245,5 +245,46 @@ public class MovimientoDao{
             getConexion();
         }
     }
+
+    public ArrayList<Movimiento> listByFactura(Factura factura) throws NullPointerException{
+        ArrayList<Movimiento> lista = new ArrayList();
+        try {
+            PreparedStatement consulta = cn.prepareStatement(
+                    "SELECT `id`, `precioUni`, `cantidad`, `cliente`, `articulo`, `tiopMovimiento`, `proveedor`, `usuario`, `factura_id`"
+                    + "FROM `movimiento`"
+                    + "WHERE `factura_id` = " + factura.getId());
+            ResultSet res = consulta.executeQuery();
+            while (res.next()) {
+                Movimiento movimiento = new Movimiento();
+                movimiento.setId(res.getInt("id"));
+                movimiento.setPrecioUni(res.getDouble("precioUni"));
+                movimiento.setCantidad(res.getInt("cantidad"));
+                Cliente cliente = new Cliente();
+                cliente.setCedula(res.getString("cliente"));
+                movimiento.setCliente(cliente);
+                Articulo articulo = new Articulo();
+                articulo.setId(res.getInt("articulo"));
+                movimiento.setArticulo(articulo);
+                Tiopmovimiento tiopmovimiento = new Tiopmovimiento();
+                tiopmovimiento.setId(res.getInt("tiopMovimiento"));
+                movimiento.setTiopmovimiento(tiopmovimiento);
+                Proveedor proveedor = new Proveedor();
+                proveedor.setId(res.getInt("proveedor"));
+                movimiento.setProveedor(proveedor);
+                Usuario usuario = new Usuario();
+                usuario.setUser(res.getString("usuario"));
+                movimiento.setUsuario(usuario);                
+                movimiento.setFactura(factura);
+                lista.add(movimiento);
+            }
+            res.close();
+            consulta.close();
+        } catch (SQLException e) {
+            MyLogger.escribirLog(e);
+            getConexion();
+            return null;
+        }
+        return lista;
+    }
 }
 //That´s all folks!

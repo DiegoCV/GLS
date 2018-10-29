@@ -5,7 +5,7 @@
  */
 package gls.control.facturacion;
 
-import gls.Inventario.DTO.Cliente;
+import gls.Personas.DTO.Cliente;
 import gls.control.Filtro;
 import java.io.*;
 import javax.servlet.*;

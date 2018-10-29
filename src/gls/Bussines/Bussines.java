@@ -7,6 +7,7 @@ package gls.Bussines;
 
 import gls.Inventario.DTO.Articulo;
 import gls.Inventario.DTO.Bodega;
+import gls.Inventario.DTO.Factura;
 import gls.Inventario.DTO.Movimiento;
 import gls.Personas.DTO.Proveedor;
 import gls.Personas.DTO.Cliente;
@@ -26,4 +27,6 @@ public interface Bussines {
     public Carguero prepararVenta(); //listo articulos y clientes
     public void efectuarVenta(ArrayList<Movimiento> movimientos,double total);
     
+    public ArrayList<Movimiento> prepararDevolucion(int idFactura);
+    public void efectuarDevolucion(ArrayList<Movimiento> movimientos,Factura factura);//factura con id y nuevo total //cuando es al proveedor, enviarAlLimbo=false
 }
