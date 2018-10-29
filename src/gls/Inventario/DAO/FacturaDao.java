@@ -6,7 +6,7 @@
 //    Un generador de código no basta. Ahora debo inventar también un generador de frases tontas  \\
 package gls.Inventario.DAO;
 
-import gls.Inventario.DTO.Bodega;
+import gls.Inventario.DTO.Factura;
 import gls.Util.MyLogger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class BodegaDao {
+public class FacturaDao {
 
     private static Connection cn;
 
@@ -22,34 +22,34 @@ public class BodegaDao {
      * Inicializa una única conexión a la base de datos, que se usará para cada
      * consulta.
      */
-    public BodegaDao() {
+    public FacturaDao() {
         cn = getConexion();
     }
 
     private Connection getConexion() {
         if (cn == null) {
-            cn = Vinculo.getConexion("Bodega");
+            cn = Vinculo.getConexion("Factura");
         }
         return cn;
     }
 
     /**
-     * Guarda un objeto Bodega en la base de datos.
+     * Guarda un objeto Factura en la base de datos.
      *
-     * @param bodega objeto a guardar
+     * @param factura objeto a guardar
      * @return El id generado para la inserción
      * @throws NullPointerException Si los objetos correspondientes a las llaves
      * foraneas son null
      */
-    public int insert(Bodega bodega) throws NullPointerException {
+    public int insert(Factura factura) throws NullPointerException {
         int last_inserted_id = -1;
         try {
             PreparedStatement consulta = getConexion().prepareStatement(
-                    "INSERT INTO `bodega`( `id`, `nombre`, `detalles`)"
+                    "INSERT INTO `factura`( `id`, `total`, `timestamp`)"
                     + "VALUES (?,?,?)");
-            consulta.setInt(1, bodega.getId());
-            consulta.setString(2, bodega.getNombre());
-            consulta.setString(3, bodega.getDetalles());
+            consulta.setInt(1, factura.getId());
+            consulta.setDouble(2, factura.getTotal());
+            consulta.setString(3, factura.getTimestamp());
             consulta.executeUpdate();
             ResultSet rs = consulta.getGeneratedKeys();
             if (rs.next()) {
@@ -64,26 +64,26 @@ public class BodegaDao {
     }
 
     /**
-     * Busca un objeto Bodega en la base de datos.
+     * Busca un objeto Factura en la base de datos.
      *
-     * @param bodega objeto con la(s) llave(s) primaria(s) para consultar
+     * @param factura objeto con la(s) llave(s) primaria(s) para consultar
      * @return El objeto consultado o null
      * @throws NullPointerException Si los objetos correspondientes a las llaves
      * foraneas son null
      */
-    public Bodega select(Bodega bodega) throws NullPointerException {
+    public Factura select(Factura factura) throws NullPointerException {
         try {
             PreparedStatement consulta = getConexion().prepareStatement(
-                    "SELECT `id`, `nombre`, `detalles`"
-                    + "FROM `bodega`"
+                    "SELECT `id`, `total`, `timestamp`"
+                    + "FROM `factura`"
                     + "WHERE `id`=?");
-            consulta.setInt(1, bodega.getId());
+            consulta.setInt(1, factura.getId());
 
             ResultSet res = consulta.executeQuery();
             while (res.next()) {
-                bodega.setId(res.getInt("id"));
-                bodega.setNombre(res.getString("nombre"));
-                bodega.setDetalles(res.getString("detalles"));
+                factura.setId(res.getInt("id"));
+                factura.setTotal(res.getDouble("total"));
+                factura.setTimestamp(res.getString("timestamp"));
 
             }
             res.close();
@@ -93,24 +93,24 @@ public class BodegaDao {
             getConexion();
             return null;
         }
-        return bodega;
+        return factura;
     }
 
     /**
-     * Modifica un objeto Bodega en la base de datos.
+     * Modifica un objeto Factura en la base de datos.
      *
-     * @param bodega objeto con la información a modificar
+     * @param factura objeto con la información a modificar
      * @throws NullPointerException Si los objetos correspondientes a las llaves
      * foraneas son null
      */
-    public void update(Bodega bodega) throws NullPointerException {
+    public void update(Factura factura) throws NullPointerException {
         try {
             PreparedStatement consulta = getConexion().prepareStatement(
-                    "UPDATE `bodega` SET`id`=?, `nombre`=?, `detalles`=? WHERE `id`=? ");
-            consulta.setInt(1, bodega.getId());
-            consulta.setString(2, bodega.getNombre());
-            consulta.setString(3, bodega.getDetalles());
-            consulta.setInt(4, bodega.getId());
+                    "UPDATE `factura` SET`id`=?, `total`=?, `timestamp`=? WHERE `id`=? ");
+            consulta.setInt(1, factura.getId());
+            consulta.setDouble(2, factura.getTotal());
+            consulta.setString(3, factura.getTimestamp());
+            consulta.setInt(4, factura.getId());
 
             consulta.executeUpdate();
             consulta.close();
@@ -121,17 +121,17 @@ public class BodegaDao {
     }
 
     /**
-     * Elimina un objeto Bodega en la base de datos.
+     * Elimina un objeto Factura en la base de datos.
      *
-     * @param bodega objeto con la(s) llave(s) primaria(s) para consultar
+     * @param factura objeto con la(s) llave(s) primaria(s) para consultar
      * @throws NullPointerException Si los objetos correspondientes a las llaves
      * foraneas son null
      */
-    public void delete(Bodega bodega) throws NullPointerException {
+    public void delete(Factura factura) throws NullPointerException {
         try {
             PreparedStatement consulta = getConexion().prepareStatement(
-                    "DELETE FROM `bodega` WHERE `id`=?");
-            consulta.setInt(1, bodega.getId());
+                    "DELETE FROM `factura` WHERE `id`=?");
+            consulta.setInt(1, factura.getId());
 
             consulta.executeUpdate();
             consulta.close();
@@ -142,27 +142,28 @@ public class BodegaDao {
     }
 
     /**
-     * Lista todos los objetos Bodega en la base de datos.
+     * Lista todos los objetos Factura en la base de datos.
      *
-     * @return ArrayList<Bodega> Listado de todos los registros en base de datos
+     * @return ArrayList<Factura> Listado de todos los registros en base de
+     * datos
      * @throws NullPointerException Si los objetos correspondientes a las llaves
      * foraneas son null
      */
-    public ArrayList<Bodega> listAll() throws NullPointerException {
-        ArrayList<Bodega> lista = new ArrayList();
+    public ArrayList<Factura> listAll() throws NullPointerException {
+        ArrayList<Factura> lista = new ArrayList();
         try {
             PreparedStatement consulta = getConexion().prepareStatement(
-                    "SELECT `id`, `nombre`, `detalles`"
-                    + "FROM `bodega`"
+                    "SELECT `id`, `total`, `timestamp`"
+                    + "FROM `factura`"
                     + "WHERE 1");
             ResultSet res = consulta.executeQuery();
             while (res.next()) {
-                Bodega bodega = new Bodega();
-                bodega.setId(res.getInt("id"));
-                bodega.setNombre(res.getString("nombre"));
-                bodega.setDetalles(res.getString("detalles"));
+                Factura factura = new Factura();
+                factura.setId(res.getInt("id"));
+                factura.setTotal(res.getDouble("total"));
+                factura.setTimestamp(res.getString("timestamp"));
 
-                lista.add(bodega);
+                lista.add(factura);
             }
             res.close();
             consulta.close();
@@ -180,9 +181,9 @@ public class BodegaDao {
     public void close() {
         try {
             cn.close();
-            cn = null;
         } catch (SQLException e) {
             MyLogger.escribirLog(e);
+            getConexion();
         }
     }
 }

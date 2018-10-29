@@ -7,6 +7,7 @@ package gls.Bussines;
 
 import gls.Inventario.DTO.Articulo;
 import gls.Inventario.DTO.Bodega;
+import gls.Inventario.DTO.Movimiento;
 import gls.Util.Carguero;
 import java.util.ArrayList;
 
@@ -27,8 +28,8 @@ public class Recepcionista implements Bussines{
     }
 
     @Override
-    public String efectuarCompra(Proveedor proveedor, ArrayList<Articulo> articulos) {
-        
+    public String efectuarCompra(ArrayList<Movimiento> movimientos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -37,10 +38,11 @@ public class Recepcionista implements Bussines{
     }
 
     @Override
-    public String efectuarVenta(Cliente cliente, ArrayList<Articulo> articulos) {
+    public String efectuarVenta(ArrayList<Movimiento> movimientos) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+<<<<<<< HEAD
     @Override
     public String efectuarCompra(ArrayList<gls.Inventario.DTO.Movimiento> movimientos) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -51,5 +53,7 @@ public class Recepcionista implements Bussines{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
    
+=======
+>>>>>>> a746853c35c37af60f8d359e6dc801c7cfb2f96c
     
 }

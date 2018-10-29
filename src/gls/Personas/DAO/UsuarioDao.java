@@ -3,10 +3,10 @@
              \(x.x )/ Anarchy \( x.x)/
               ------------------------
  */
-//    Un generador de código no basta. Ahora debo inventar también un generador de frases tontas  \\
-package gls.Inventario.DAO;
+//    A vote for Bart is a vote for Anarchy!  \\
+package gls.Personas.DAO;
 
-import gls.Inventario.DTO.Bodega;
+import gls.Personas.DTO.Usuario;
 import gls.Util.MyLogger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class BodegaDao {
+public class UsuarioDao {
 
     private static Connection cn;
 
@@ -22,34 +22,34 @@ public class BodegaDao {
      * Inicializa una única conexión a la base de datos, que se usará para cada
      * consulta.
      */
-    public BodegaDao() {
+    public UsuarioDao() {
         cn = getConexion();
     }
 
     private Connection getConexion() {
         if (cn == null) {
-            cn = Vinculo.getConexion("Bodega");
+            cn = Vinculo.getConexion("Usuario");
         }
         return cn;
     }
 
     /**
-     * Guarda un objeto Bodega en la base de datos.
+     * Guarda un objeto Usuario en la base de datos.
      *
-     * @param bodega objeto a guardar
+     * @param usuario objeto a guardar
      * @return El id generado para la inserción
      * @throws NullPointerException Si los objetos correspondientes a las llaves
      * foraneas son null
      */
-    public int insert(Bodega bodega) throws NullPointerException {
+    public int insert(Usuario usuario) throws NullPointerException {
         int last_inserted_id = -1;
         try {
-            PreparedStatement consulta = getConexion().prepareStatement(
-                    "INSERT INTO `bodega`( `id`, `nombre`, `detalles`)"
+            PreparedStatement consulta = cn.prepareStatement(
+                    "INSERT INTO `usuario`( `user`, `password`, `tipo`)"
                     + "VALUES (?,?,?)");
-            consulta.setInt(1, bodega.getId());
-            consulta.setString(2, bodega.getNombre());
-            consulta.setString(3, bodega.getDetalles());
+            consulta.setString(1, usuario.getUser());
+            consulta.setString(2, usuario.getPassword());
+            consulta.setInt(3, usuario.getTipo());
             consulta.executeUpdate();
             ResultSet rs = consulta.getGeneratedKeys();
             if (rs.next()) {
@@ -64,26 +64,26 @@ public class BodegaDao {
     }
 
     /**
-     * Busca un objeto Bodega en la base de datos.
+     * Busca un objeto Usuario en la base de datos.
      *
-     * @param bodega objeto con la(s) llave(s) primaria(s) para consultar
+     * @param usuario objeto con la(s) llave(s) primaria(s) para consultar
      * @return El objeto consultado o null
      * @throws NullPointerException Si los objetos correspondientes a las llaves
      * foraneas son null
      */
-    public Bodega select(Bodega bodega) throws NullPointerException {
+    public Usuario select(Usuario usuario) throws NullPointerException {
         try {
-            PreparedStatement consulta = getConexion().prepareStatement(
-                    "SELECT `id`, `nombre`, `detalles`"
-                    + "FROM `bodega`"
-                    + "WHERE `id`=?");
-            consulta.setInt(1, bodega.getId());
+            PreparedStatement consulta = cn.prepareStatement(
+                    "SELECT `user`, `password`, `tipo`"
+                    + "FROM `usuario`"
+                    + "WHERE `user`=?");
+            consulta.setString(1, usuario.getUser());
 
             ResultSet res = consulta.executeQuery();
             while (res.next()) {
-                bodega.setId(res.getInt("id"));
-                bodega.setNombre(res.getString("nombre"));
-                bodega.setDetalles(res.getString("detalles"));
+                usuario.setUser(res.getString("user"));
+                usuario.setPassword(res.getString("password"));
+                usuario.setTipo(res.getInt("tipo"));
 
             }
             res.close();
@@ -93,24 +93,24 @@ public class BodegaDao {
             getConexion();
             return null;
         }
-        return bodega;
+        return usuario;
     }
 
     /**
-     * Modifica un objeto Bodega en la base de datos.
+     * Modifica un objeto Usuario en la base de datos.
      *
-     * @param bodega objeto con la información a modificar
+     * @param usuario objeto con la información a modificar
      * @throws NullPointerException Si los objetos correspondientes a las llaves
      * foraneas son null
      */
-    public void update(Bodega bodega) throws NullPointerException {
+    public void update(Usuario usuario) throws NullPointerException {
         try {
-            PreparedStatement consulta = getConexion().prepareStatement(
-                    "UPDATE `bodega` SET`id`=?, `nombre`=?, `detalles`=? WHERE `id`=? ");
-            consulta.setInt(1, bodega.getId());
-            consulta.setString(2, bodega.getNombre());
-            consulta.setString(3, bodega.getDetalles());
-            consulta.setInt(4, bodega.getId());
+            PreparedStatement consulta = cn.prepareStatement(
+                    "UPDATE `usuario` SET`user`=?, `password`=?, `tipo`=? WHERE `user`=? ");
+            consulta.setString(1, usuario.getUser());
+            consulta.setString(2, usuario.getPassword());
+            consulta.setInt(3, usuario.getTipo());
+            consulta.setString(4, usuario.getUser());
 
             consulta.executeUpdate();
             consulta.close();
@@ -121,17 +121,17 @@ public class BodegaDao {
     }
 
     /**
-     * Elimina un objeto Bodega en la base de datos.
+     * Elimina un objeto Usuario en la base de datos.
      *
-     * @param bodega objeto con la(s) llave(s) primaria(s) para consultar
+     * @param usuario objeto con la(s) llave(s) primaria(s) para consultar
      * @throws NullPointerException Si los objetos correspondientes a las llaves
      * foraneas son null
      */
-    public void delete(Bodega bodega) throws NullPointerException {
+    public void delete(Usuario usuario) throws NullPointerException {
         try {
-            PreparedStatement consulta = getConexion().prepareStatement(
-                    "DELETE FROM `bodega` WHERE `id`=?");
-            consulta.setInt(1, bodega.getId());
+            PreparedStatement consulta = cn.prepareStatement(
+                    "DELETE FROM `usuario` WHERE `user`=?");
+            consulta.setString(1, usuario.getUser());
 
             consulta.executeUpdate();
             consulta.close();
@@ -142,27 +142,28 @@ public class BodegaDao {
     }
 
     /**
-     * Lista todos los objetos Bodega en la base de datos.
+     * Lista todos los objetos Usuario en la base de datos.
      *
-     * @return ArrayList<Bodega> Listado de todos los registros en base de datos
+     * @return ArrayList<Usuario> Listado de todos los registros en base de
+     * datos
      * @throws NullPointerException Si los objetos correspondientes a las llaves
      * foraneas son null
      */
-    public ArrayList<Bodega> listAll() throws NullPointerException {
-        ArrayList<Bodega> lista = new ArrayList();
+    public ArrayList<Usuario> listAll() throws NullPointerException {
+        ArrayList<Usuario> lista = new ArrayList();
         try {
-            PreparedStatement consulta = getConexion().prepareStatement(
-                    "SELECT `id`, `nombre`, `detalles`"
-                    + "FROM `bodega`"
+            PreparedStatement consulta = cn.prepareStatement(
+                    "SELECT `user`, `password`, `tipo`"
+                    + "FROM `usuario`"
                     + "WHERE 1");
             ResultSet res = consulta.executeQuery();
             while (res.next()) {
-                Bodega bodega = new Bodega();
-                bodega.setId(res.getInt("id"));
-                bodega.setNombre(res.getString("nombre"));
-                bodega.setDetalles(res.getString("detalles"));
+                Usuario usuario = new Usuario();
+                usuario.setUser(res.getString("user"));
+                usuario.setPassword(res.getString("password"));
+                usuario.setTipo(res.getInt("tipo"));
 
-                lista.add(bodega);
+                lista.add(usuario);
             }
             res.close();
             consulta.close();
@@ -180,9 +181,9 @@ public class BodegaDao {
     public void close() {
         try {
             cn.close();
-            cn = null;
         } catch (SQLException e) {
             MyLogger.escribirLog(e);
+            getConexion();
         }
     }
 }
