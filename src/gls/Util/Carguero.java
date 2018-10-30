@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class Carguero {
 
     private final HashMap<String, Object> misArticulos;
-
+       
     public Carguero() {
         this.misArticulos = new HashMap<>();
     }
@@ -29,5 +29,5 @@ public class Carguero {
     
     public void remove(String key){
         this.misArticulos.remove(key);
-    }
+    }       
 }

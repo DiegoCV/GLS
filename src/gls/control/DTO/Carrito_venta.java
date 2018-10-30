@@ -6,7 +6,7 @@
 package gls.control.DTO;
 
 import gls.Inventario.DTO.Articulo;
-import gls.Inventario.DTO.Cliente;
+import gls.Personas.DTO.Cliente;
 import gls.Personas.DTO.Usuario;
 import java.util.List;
 

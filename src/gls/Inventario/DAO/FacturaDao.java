@@ -45,11 +45,10 @@ public class FacturaDao {
         int last_inserted_id = -1;
         try {
             PreparedStatement consulta = getConexion().prepareStatement(
-                    "INSERT INTO `factura`( `id`, `total`, `timestamp`)"
-                    + "VALUES (?,?,?)");
+                    "INSERT INTO `factura`( `id`, `total`)"
+                    + "VALUES (?,?)");
             consulta.setInt(1, factura.getId());
-            consulta.setDouble(2, factura.getTotal());
-            consulta.setString(3, factura.getTimestamp());
+            consulta.setDouble(2, factura.getTotal());            
             consulta.executeUpdate();
             ResultSet rs = consulta.getGeneratedKeys();
             if (rs.next()) {
@@ -106,11 +105,10 @@ public class FacturaDao {
     public void update(Factura factura) throws NullPointerException {
         try {
             PreparedStatement consulta = getConexion().prepareStatement(
-                    "UPDATE `factura` SET`id`=?, `total`=?, `timestamp`=? WHERE `id`=? ");
+                    "UPDATE `factura` SET`id`=?, `total`=? WHERE `id`=? ");
             consulta.setInt(1, factura.getId());
-            consulta.setDouble(2, factura.getTotal());
-            consulta.setString(3, factura.getTimestamp());
-            consulta.setInt(4, factura.getId());
+            consulta.setDouble(2, factura.getTotal());            
+            consulta.setInt(3, factura.getId());
 
             consulta.executeUpdate();
             consulta.close();

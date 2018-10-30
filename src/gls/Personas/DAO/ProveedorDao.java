@@ -44,7 +44,7 @@ public class ProveedorDao {
     public int insert(Proveedor proveedor) throws NullPointerException {
         int last_inserted_id = -1;
         try {
-            PreparedStatement consulta = cn.prepareStatement(
+            PreparedStatement consulta = getConexion().prepareStatement(
                     "INSERT INTO `proveedor`( `id`, `nombre`, `telefono`)"
                     + "VALUES (?,?,?)");
             consulta.setInt(1, proveedor.getId());
@@ -73,7 +73,7 @@ public class ProveedorDao {
      */
     public Proveedor select(Proveedor proveedor) throws NullPointerException {
         try {
-            PreparedStatement consulta = cn.prepareStatement(
+            PreparedStatement consulta = getConexion().prepareStatement(
                     "SELECT `id`, `nombre`, `telefono`"
                     + "FROM `proveedor`"
                     + "WHERE `id`=?");
@@ -105,7 +105,7 @@ public class ProveedorDao {
      */
     public void update(Proveedor proveedor) throws NullPointerException {
         try {
-            PreparedStatement consulta = cn.prepareStatement(
+            PreparedStatement consulta = getConexion().prepareStatement(
                     "UPDATE `proveedor` SET`id`=?, `nombre`=?, `telefono`=? WHERE `id`=? ");
             consulta.setInt(1, proveedor.getId());
             consulta.setString(2, proveedor.getNombre());
@@ -129,7 +129,7 @@ public class ProveedorDao {
      */
     public void delete(Proveedor proveedor) throws NullPointerException {
         try {
-            PreparedStatement consulta = cn.prepareStatement(
+            PreparedStatement consulta = getConexion().prepareStatement(
                     "DELETE FROM `proveedor` WHERE `id`=?");
             consulta.setInt(1, proveedor.getId());
 
@@ -152,7 +152,7 @@ public class ProveedorDao {
     public ArrayList<Proveedor> listAll() throws NullPointerException {
         ArrayList<Proveedor> lista = new ArrayList();
         try {
-            PreparedStatement consulta = cn.prepareStatement(
+            PreparedStatement consulta = getConexion().prepareStatement(
                     "SELECT `id`, `nombre`, `telefono`"
                     + "FROM `proveedor`"
                     + "WHERE 1");

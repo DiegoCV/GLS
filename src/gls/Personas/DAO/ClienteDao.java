@@ -44,7 +44,7 @@ public class ClienteDao {
     public int insert(Cliente cliente) throws NullPointerException {
         int last_inserted_id = -1;
         try {
-            PreparedStatement consulta = cn.prepareStatement(
+            PreparedStatement consulta = getConexion().prepareStatement(
                     "INSERT INTO `cliente`( `cedula`, `nombre`, `telefono`)"
                     + "VALUES (?,?,?)");
             consulta.setString(1, cliente.getCedula());
@@ -73,7 +73,7 @@ public class ClienteDao {
      */
     public Cliente select(Cliente cliente) throws NullPointerException {
         try {
-            PreparedStatement consulta = cn.prepareStatement(
+            PreparedStatement consulta = getConexion().prepareStatement(
                     "SELECT `cedula`, `nombre`, `telefono`"
                     + "FROM `cliente`"
                     + "WHERE `cedula`=?");
@@ -105,7 +105,7 @@ public class ClienteDao {
      */
     public void update(Cliente cliente) throws NullPointerException {
         try {
-            PreparedStatement consulta = cn.prepareStatement(
+            PreparedStatement consulta = getConexion().prepareStatement(
                     "UPDATE `cliente` SET`cedula`=?, `nombre`=?, `telefono`=? WHERE `cedula`=? ");
             consulta.setString(1, cliente.getCedula());
             consulta.setString(2, cliente.getNombre());
@@ -129,7 +129,7 @@ public class ClienteDao {
      */
     public void delete(Cliente cliente) throws NullPointerException {
         try {
-            PreparedStatement consulta = cn.prepareStatement(
+            PreparedStatement consulta = getConexion().prepareStatement(
                     "DELETE FROM `cliente` WHERE `cedula`=?");
             consulta.setString(1, cliente.getCedula());
 
@@ -152,7 +152,7 @@ public class ClienteDao {
     public ArrayList<Cliente> listAll() throws NullPointerException {
         ArrayList<Cliente> lista = new ArrayList();
         try {
-            PreparedStatement consulta = cn.prepareStatement(
+            PreparedStatement consulta = getConexion().prepareStatement(
                     "SELECT `cedula`, `nombre`, `telefono`"
                     + "FROM `cliente`"
                     + "WHERE 1");

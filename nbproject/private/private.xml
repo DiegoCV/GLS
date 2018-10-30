@@ -3,29 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/DiegoCarrascal/GLS/src/gls/Inventario/DAO/BodegaDao.java</file>
-            <file>file:/C:/Users/DiegoCarrascal/GLS/src/gls/control/compras/ListarBodega.java</file>
-            <file>file:/C:/Users/DiegoCarrascal/GLS/src/gls/Inventario/DTO/Precio.java</file>
-            <file>file:/C:/Users/DiegoCarrascal/GLS/src/gls/control/compras/AgregarGrupo.java</file>
-            <file>file:/C:/Users/DiegoCarrascal/GLS/src/gls/control/Filtro.java</file>
-            <file>file:/C:/Users/DiegoCarrascal/GLS/src/gls/Bussines/Bussines.java</file>
-            <file>file:/C:/Users/DiegoCarrascal/GLS/src/gls/Inventario/Factory.java</file>
-            <file>file:/C:/Users/DiegoCarrascal/GLS/src/gls/control/compras/ListarGrupo.java</file>
-            <file>file:/C:/Users/DiegoCarrascal/GLS/src/gls/GLS.java</file>
-            <file>file:/C:/Users/DiegoCarrascal/GLS/src/gls/Util/Carguero.java</file>
-            <file>file:/C:/Users/DiegoCarrascal/GLS/src/gls/Inventario/DTO/Cliente.java</file>
-            <file>file:/C:/Users/DiegoCarrascal/GLS/src/gls/Conexion/Cifrador.java</file>
-            <file>file:/C:/Users/DiegoCarrascal/GLS/src/gls/Inventario/DAO/LimboDao.java</file>
-            <file>file:/C:/Users/DiegoCarrascal/GLS/src/gls/Inventario/DTO/Limbo.java</file>
-            <file>file:/C:/Users/DiegoCarrascal/GLS/src/gls/control/compras/AgregarBodega.java</file>
-            <file>file:/C:/Users/DiegoCarrascal/GLS/src/gls/control/compras/Comprar.java</file>
-            <file>file:/C:/Users/DiegoCarrascal/GLS/src/gls/control/IAPI_REST.java</file>
-            <file>file:/C:/Users/DiegoCarrascal/GLS/src/gls/Conexion/Properties.ini</file>
-            <file>file:/C:/Users/DiegoCarrascal/GLS/src/gls/Bussines/Vinculo.java</file>
-            <file>file:/C:/Users/DiegoCarrascal/GLS/src/gls/Util/MyLogger.java</file>
-            <file>file:/C:/Users/DiegoCarrascal/GLS/src/gls/Bussines/Recepcionista.java</file>
-            <file>file:/C:/Users/DiegoCarrascal/GLS/src/gls/control/facturacion/Facturar.java</file>
-            <file>file:/C:/Users/DiegoCarrascal/GLS/src/gls/Conexion/Conector.java</file>
+            <file>file:/D:/Documents/NetBeansProjects/GLS/src/gls/Personas/PersonasF.java</file>
+            <file>file:/D:/Documents/NetBeansProjects/GLS/src/gls/Bussines/Vinculo.java</file>
+            <file>file:/D:/Documents/NetBeansProjects/GLS/src/gls/Inventario/InventarioF.java</file>
+            <file>file:/D:/Documents/NetBeansProjects/GLS/src/gls/Bussines/Bussines.java</file>
+            <file>file:/D:/Documents/NetBeansProjects/GLS/src/gls/Personas/Personas.java</file>
+            <file>file:/D:/Documents/NetBeansProjects/GLS/src/gls/Inventario/Inventario.java</file>
+            <file>file:/D:/Documents/NetBeansProjects/GLS/src/gls/Bussines/Recepcionista.java</file>
         </group>
     </open-files>
 </project-private>

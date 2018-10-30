@@ -10,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -19,7 +20,8 @@ import java.util.Date;
 public class MyLogger {
 
     private static final String RUTALOG = "";
-
+    public static final ArrayList<String> RESPUESTAS = new ArrayList<>();
+    
     public static void escribirLog(String mensaje) {
         BufferedWriter writer = null;
         try {
@@ -51,5 +53,5 @@ public class MyLogger {
             txt += ("      " + stackTraceElement) + "\n";
         }
         escribirLog(txt);
-    }
+    }        
 }
