@@ -9,7 +9,7 @@ import gls.Inventario.DTO.Articulo;
 import gls.Inventario.DTO.Bodega;
 import gls.Inventario.DTO.Movimiento;
 import gls.Personas.DTO.Proveedor;
-import gls.Personas.DTO.Cliente;
+import gson.Cliente;
 import gls.Util.Carguero;
 import java.util.ArrayList;
 //acuérdese de borrar los imports sin usar ^^^^

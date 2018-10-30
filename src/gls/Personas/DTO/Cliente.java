@@ -14,6 +14,7 @@ public class Cliente {
   private String nombre;
   private String telefono;
 
+
     /**
      * Devuelve el valor correspondiente a cedula
      * @return cedula

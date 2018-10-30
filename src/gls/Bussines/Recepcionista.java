@@ -19,11 +19,11 @@ public class Recepcionista implements Bussines{
 
     @Override
     public Carguero prepararCompra() {
-        Carguero c=new Carguero();
+        Carguero c=new Carguero();/**
         c.add("articulos", Vinculo.listArticulos());
         c.add("grupos", Vinculo.listGrupos());
         c.add("bodegas", Vinculo.listBodegas());
-        c.add("proveedores", Vinculo.listProveedores());
+        c.add("proveedores", Vinculo.listProveedores());*/
         return c;
     }
 
@@ -41,7 +41,7 @@ public class Recepcionista implements Bussines{
     public String efectuarVenta(ArrayList<Movimiento> movimientos) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+/**
 <<<<<<< HEAD
     @Override
     public String efectuarCompra(ArrayList<gls.Inventario.DTO.Movimiento> movimientos) {
@@ -54,6 +54,6 @@ public class Recepcionista implements Bussines{
     }
    
 =======
->>>>>>> a746853c35c37af60f8d359e6dc801c7cfb2f96c
+>>>>>>> a746853c35c37af60f8d359e6dc801c7cfb2f96c*/
     
 }

@@ -1,0 +1,71 @@
+{
+  "usuario": {
+    "user": "DiegoCV"
+  },
+  "cliente": {
+    "cedula": "123456789",
+    "nombre": "diego",
+    "telefono": "3114414241"
+  },
+  "articulos": [
+    {
+      "id": 1,
+      "cantidad": 2
+    },
+    {
+      "id": 1,
+      "cantidad": 2
+    }
+  ]
+}
+
+
+
+
+{
+  "usuario": {
+    "user": "DiegoCV"
+  },
+  "proveedor": {
+    "id": 12,
+    "nombre": "diego",
+    "telefono": "3114414241"
+  },
+  "articulos": [
+    {
+      "id": 1,
+      "nombre": "impresora",
+      "descripcion": "Laser",
+      "grupo": {
+      	"id":0,
+      	"nombre":"laser",
+      	"unidadMedida":"unidad"
+      },
+      "cantidad": 2,
+      "isServicio": 0,
+      "bodega":{
+      		"id":0,
+      		"nombre":"general",
+      		"detalles":"Amplia con buena luz"
+      }
+    },
+    {
+      "id": 1,
+      "nombre": "impresora",
+      "descripcion": "Laser",
+      "grupo": {
+      	"id":0,
+      	"nombre":"laser",
+      	"unidadMedida":"unidad"
+      },
+      "cantidad": 2,
+      "isServicio": 0,
+      "Bodega":{
+      		"id":0,
+      		"nombre":"general",
+      		"detalles":"Amplia con buena luz"
+      }
+    }
+  ]
+}
+
